@@ -144,44 +144,6 @@ def push_to_bigquery(dataset_id: str, table_id: str, data: dict, filename: str) 
             "message": error_message
         }
 
-def transform_and_load_bq(source_table: str, target_table: str, transform_instructions: str) -> dict:
-    """Reads BQ, transforms, loads to DW BQ."""
-    # (Keep existing implementation, ensure project ID is handled correctly)
-    try:
-        # IMPORTANT: Ensure BigQuery client has project ID configured
-        # Either via environment variable (GOOGLE_CLOUD_PROJECT) or explicitly:
-        # client = bigquery.Client(project="your-gcp-project-id")
-        client = bigquery.Client()
-        project_id = client.project # Get project ID from client
-        source_full_table_id = f"{project_id}.{RAW_DATASET_ID}.{source_table}"
-        target_full_table_id = f"{project_id}.{DW_DATASET_ID}.{target_table}"
-
-        query = f"SELECT * FROM `{source_full_table_id}`"
-        df = client.query(query).to_dataframe()
-
-        if df.empty:
-            return {"status": "warning", "message": f"Source table {source_full_table_id} is empty."}
-
-        transformed_df = df.copy() # Placeholder for actual transformation logic
-        # Add more robust transformation logic based on instructions if needed
-        # Example: Simple filtering (keep existing logic or enhance)
-        if "filter" in transform_instructions.lower():
-             # Basic parsing, enhance as needed
-            filter_condition = transform_instructions.split("filter by ")[-1].strip()
-            try:
-                transformed_df = transformed_df.query(filter_condition)
-            except Exception as filter_error:
-                 return {"status": "error", "message": f"Error applying filter '{filter_condition}': {filter_error}"}
-
-        table_ref = client.dataset(DW_DATASET_ID).table(target_table)
-        job_config = bigquery.LoadJobConfig(write_disposition="WRITE_TRUNCATE")
-        job = client.load_table_from_dataframe(transformed_df, table_ref, job_config=job_config)
-        job.result()
-        return {"status": "success", "message": f"Transformed data loaded to: {target_full_table_id}"}
-    except Exception as e:
-        return {"status": "error", "message": f"Error in transform/load: {str(e)}"}
-
-
 # --- Sub-Agent Definitions ---
 
 # 1. Agent to read CSVs from GCS
@@ -235,6 +197,7 @@ bq_loader_agent = LlmAgent(
         b. Derive a suitable BigQuery 'table_id' from the 'filename'. Remove any directory prefix and the '.csv' extension. Replace any remaining non-alphanumeric characters with underscores. For example, 'data/raw/my_sales_data-v1.csv' should become 'my_sales_data_v1'. Ensure the result is not empty.
         c. Call the 'push_to_bigquery' tool with:
             - dataset_id: '{RAW_DATASET_ID}' # Target dataset for raw data
+            -dataset_id: '{DW_DATASET_ID}' # Target dataset for lookpup data
             - table_id: the derived table_id from step 5b.
             - data: the data dictionary retrieved in step 5a.
             - filename: the original filename (key from the loop).
