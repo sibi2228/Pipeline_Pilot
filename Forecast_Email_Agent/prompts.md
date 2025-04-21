@@ -1,0 +1,4 @@
+- User should start with the greeting message like "Hi"
+- User should then ask the agent to "create a sales forecast based on the "table/view name" and send the email to "email_id"
+- User can provide the email subject and body optionally or they can tell "Create the subject and body on your own"
+-once the chart is popped up, user should close it for the email function to run.

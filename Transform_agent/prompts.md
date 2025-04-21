@@ -1,0 +1,2 @@
+-User should provide the Google Cloud project_id and the destination_table_id for the final table in the 'dw' dataset.
+-It will start the transformation process will exit with the sucess status or error status.
