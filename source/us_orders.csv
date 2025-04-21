@@ -1,0 +1,60 @@
+order_id,customer_name,order_date,country,region,product,quantity,price,item_total,total_amount
+100002,Crystal Tran,2024-08-03,US,Vermont,Laptop,2,1397.38,2794.76,2794.76
+100003,Cynthia Smith,2024-03-26,US,West Virginia,Smartphone,2,1076.62,2153.24,2153.24
+100004,Gerald Perez,2023-08-01,US,Iowa,Tablet,3,697.64,2092.92,2092.92
+100005,Angela Smith,2023-10-18,US,New York,Headphones,2,271.74,543.48,543.48
+100006,Willie Jackson,2024-07-28,US,Montana,Smartwatch,3,482.42,1447.26,1447.26
+100007,Michelle Smith,2023-08-28,US,Oregon,Charger,1,49.33,49.33,49.33
+100008,Jeffrey King,2023-12-10,US,Georgia,Keyboard,1,147.11,147.11,147.11
+100009,Douglas Lopez,2024-04-26,US,Connecticut,Mouse,3,99.76,299.28,299.28
+100010,Melissa Hernandez,2024-08-29,US,South Dakota,T-Shirt,3,48.29,144.87,144.87
+100011,Lisa Robinson,2023-11-29,US,Louisiana,Jeans,3,99.14,297.42,297.42
+100012,Angela Hernandez,2024-07-01,US,Nebraska,Dress,1,147.17,147.17,147.17
+100013,Richard Jackson,2024-07-29,US,Maryland,Shirt,2,79.79,159.58,159.58
+100014,Larry Wilson,2024-01-24,US,New Mexico,Sweater,2,117.22,234.44,234.44
+100015,Kenneth Martinez,2024-05-23,US,South Dakota,Jacket,3,198.58,595.74,595.74
+100016,Donna Johnson,2023-12-07,US,Oklahoma,Shoes,2,247.18,494.36,494.36
+100017,Michael Brown,2024-08-01,US,Massachusetts,Socks,2,29.12,58.24,58.24
+100018,James Martinez,2024-05-18,US,Mississippi,Table,1,489.74,489.74,489.74
+100019,Brian Moore,2024-08-29,US,Idaho,Chair,3,197.42,592.26,592.26
+100020,Kimberly Garcia,2024-05-07,US,Tennessee,Bedding Set,1,299.49,299.49,299.49
+100021,Joseph Anderson,2024-07-06,US,North Dakota,Couch,1,988.94,988.94,988.94
+100022,Angela Martinez,2024-04-25,US,New Hampshire,Lamp,3,98.88,296.64,296.64
+100023,Michael Brown,2024-04-02,US,Indiana,Rug,1,299.37,299.37,299.37
+100024,Jennifer White,2024-05-21,US,Rhode Island,Curtains,2,199.53,399.06,399.06
+100025,Brian Jones,2024-08-06,US,Nebraska,Pillows,3,79.13,237.39,237.39
+100026,David Smith,2024-01-15,US,Kansas,Fiction Novel,3,29.72,89.16,89.16
+100027,Michael Brown,2024-07-02,US,Alaska,Sci-Fi Book,2,34.92,69.84,69.84
+100028,David Martinez,2024-08-28,US,Arizona,Mystery Book,3,31.87,95.61,95.61
+100029,Angela Moore,2024-07-28,US,Massachusetts,Cookbook,3,39.31,117.93,117.93
+100030,Michael Jones,2024-04-17,US,North Carolina,History Book,1,49.69,49.69,49.69
+100031,David Williams,2024-02-11,US,Connecticut,Textbook,1,69.62,69.62,69.62
+100032,Christopher Garcia,2024-07-26,US,New York,Poetry Book,2,24.96,49.92,49.92
+100033,Angela Garcia,2024-05-07,US,Colorado,Childrens Book,2,19.95,39.9,39.9
+100034,Michael Rodriguez,2024-06-12,US,North Carolina,Basketball,2,58.26,116.52,116.52
+100035,David Rodriguez,2024-07-08,US,New Jersey,Football,1,69.96,69.96,69.96
+100036,Jennifer Smith,2024-05-24,US,Texas,Soccer Ball,3,64.63,193.89,193.89
+100037,Brian Williams,2024-08-24,US,New Hampshire,Running Shoes,2,199.17,398.34,398.34
+100038,Nicole Robinson,2024-08-16,US,Oklahoma,Yoga Mat,1,49.66,49.66,49.66
+100039,Angela Davis,2024-02-28,US,Minnesota,Dumbbells,3,98.71,296.13,296.13
+100040,Angela Davis,2024-05-24,US,Louisiana,Tennis Racket,2,196.84,393.68,393.68
+100041,Brian Brown,2024-07-21,US,Wisconsin,Jersey,1,74.96,74.96,74.96
+100042,David Jones,2024-08-07,US,Virginia,Laptop,2,1467.33,2934.66,2934.66
+100043,Angela Martinez,2024-03-16,US,Montana,Smartphone,1,1189.78,1189.78,1189.78
+100044,Brian Garcia,2024-07-24,US,Kansas,Tablet,3,758.32,2274.96,2274.96
+100045,David Rodriguez,2024-05-25,US,Alaska,Headphones,3,299.76,899.28,899.28
+100046,Brian Garcia,2023-11-23,US,New York,Smartwatch,3,435.15,1305.45,1305.45
+100047,Brian Garcia,2024-08-29,US,New Mexico,Charger,1,26.96,26.96,26.96
+100048,Brian Garcia,2024-06-25,US,South Carolina,Keyboard,2,139.31,278.62,278.62
+100049,Brian Robinson,2024-08-08,US,North Dakota,Mouse,2,99.88,199.76,199.76
+100050,Michael Brown,2024-04-24,US,West Virginia,T-Shirt,2,35.72,71.44,71.44
+100051,Angela Rodriguez,2024-08-25,US,Vermont,Jeans,1,95.73,95.73,95.73
+100052,Joseph Williams,2023-10-21,US,North Carolina,Dress,3,148.19,444.57,444.57
+100053,Brian Garcia,2024-06-18,US,Connecticut,Shirt,3,67.72,203.16,203.16
+100054,Jennifer Williams,2024-03-11,US,Illinois,Sweater,2,107.71,215.42,215.42
+100055,James Brown,2024-05-11,US,New York,Jacket,2,198.89,397.78,397.78
+100056,James Garcia,2024-05-24,US,California,Shoes,2,249.77,499.54,499.54
+100057,David Rodriguez,2024-04-17,US,Maryland,Socks,3,26.39,79.17,79.17
+100058,Jennifer Smith,2024-08-08,US,New Jersey,Table,1,477.94,477.94,477.94
+100059,Angela Robinson,2024-07-29,US,Tennessee,Chair,3,178.38,535.14,535.14
+

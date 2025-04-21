@@ -1,0 +1,115 @@
+order_id,customer_name,order_date,country,region,product,quantity,price,item_total,total_amount
+100001,Akseli Koskinen,2024-01-15,FI,Uusimaa,Laptop,2,1450.00,2900.00,2900.00
+100002,Isabella Rossi,2024-02-20,IT,Lombardia,Smartphone,1,1200.00,1200.00,1200.00
+100003,Emma Dubois,2024-03-10,FR,Île-de-France,Tablet,3,700.00,2100.00,2100.00
+100004,Oliver Smith,2024-04-05,UK,London,Headphones,2,250.00,500.00,500.00
+100005,Seán Murphy,2024-05-20,IR,Dublin,Smartwatch,1,450.00,450.00,450.00
+100006,Lina Schmidt,2024-06-12,DE,Bayern,Charger,4,25.00,100.00,100.00
+100007,Piotr Kowalski,2024-07-01,PL,Mazowieckie,Keyboard,1,100.00,100.00,100.00
+100008,Jan Janssen,2024-08-15,NL,Noord-Holland,Mouse,3,80.00,240.00,240.00
+100009,Maria Rodriguez,2024-09-01,ES,Madrid,T-Shirt,2,30.00,60.00,60.00
+100010,Sofia Andersson,2024-10-18,SE,Stockholm,Jeans,2,80.00,160.00,160.00
+100011,Nikoleta Petrova,2024-11-22,BG,Sofia,Dress,1,120.00,120.00,120.00
+100012,Andrei Ionescu,2024-12-05,RO,Bucharest,Shirt,3,60.00,180.00,180.00
+100013,Peter Novak,2025-01-10,SK,Bratislava,Sweater,2,90.00,180.00,180.00
+100014,Matej Horvat,2025-02-18,HR,Zagreb,Jacket,1,180.00,180.00,180.00
+100015,Elena Papadopoulos,2025-03-01,GR,Athens,Shoes,2,200.00,400.00,400.00
+100016,João Silva,2025-04-12,PT,Lisbon,Socks,3,15.00,45.00,45.00
+100017,Franz Huber,2024-01-20,AT,Vienna,Table,1,400.00,400.00,400.00
+100018,Marie Dupont,2024-02-25,BE,Brussels,Chair,3,150.00,450.00,450.00
+100019,David O'Brien,2024-03-15,IE,Dublin,Bedding Set,1,250.00,250.00,250.00
+100020,Laura Müller,2024-04-10,DE,Berlin,Couch,1,900.00,900.00,900.00
+100021,Sophie Martin,2024-05-25,FR,Paris,Lamp,3,80.00,240.00,240.00
+100022,Giorgio Bianchi,2024-06-20,IT,Rome,Rug,1,250.00,250.00,250.00
+100023,Grace Taylor,2024-07-05,UK,London,Curtains,2,180.00,360.00,360.00
+100024,Eva Novakova,2024-08-01,CZ,Prague,Pillows,3,60.00,180.00,180.00
+100025,Carlos García,2024-09-10,ES,Barcelona,Fiction Novel,2,25.00,50.00,50.00
+100026,Anna Svensson,2024-10-01,SE,Gothenburg,Sci-Fi Book,3,30.00,90.00,90.00
+100027,Jan Kowalski,2024-11-05,PL,Kraków,Mystery Book,2,28.00,56.00,56.00
+100028,Marie Schmidt,2024-12-20,DE,Hamburg,Cookbook,1,35.00,35.00,35.00
+100029,Pierre Dubois,2025-01-02,FR,Marseille,History Book,3,45.00,135.00,135.00
+100030,Sarah Williams,2025-02-08,UK,Manchester,Textbook,2,60.00,120.00,120.00
+100031,Laura Rossi,2025-03-18,IT,Milan,Poetry Book,1,20.00,20.00,20.00
+100032,Sofia Ivanova,2025-04-01,BG,Varna,Childrens Book,3,15.00,45.00,45.00
+100033,Marko Jurić,2024-01-22,HR,Split,Basketball,2,55.00,110.00,110.00
+100034,Nina Horvat,2024-02-28,HR,Osijek,Football,1,65.00,65.00,65.00
+100035,Jukka Virtanen,2024-03-20,FI,Tampere,Soccer Ball,3,60.00,180.00,180.00
+100036,Maria Garcia,2024-04-15,ES,Valencia,Running Shoes,2,180.00,360.00,360.00
+100037,David Smith,2024-05-10,UK,Liverpool,Yoga Mat,1,40.00,40.00,40.00
+100038,Anna Müller,2024-06-05,DE,Cologne,Dumbbells,3,90.00,270.00,270.00
+100039,Pierre Martin,2024-07-22,FR,Lyon,Tennis Racket,2,180.00,360.00,360.00
+100040,Elena Petrova,2024-08-08,BG,Plovdiv,Jersey,1,70.00,70.00,70.00
+100041,Jan Van Dijk,2024-01-28,NL,Rotterdam,Laptop,2,1400.00,2800.00,2800.00
+100042,Laura Ferrari,2024-02-03,IT,Turin,Smartphone,1,1150.00,1150.00,1150.00
+100043,Marie Curie,2024-03-25,FR,Toulouse,Tablet,3,720.00,2160.00,2160.00
+100044,John Doe,2024-04-20,UK,Birmingham,Headphones,2,260.00,520.00,520.00
+100045,Siobhán O'Neill,2024-05-15,IR,Galway,Smartwatch,1,470.00,470.00,470.00
+100046,Hans Müller,2024-06-08,DE,Frankfurt,Charger,4,28.00,112.00,112.00
+100047,Piotr Zieliński,2024-07-18,PL,Wrocław,Keyboard,1,110.00,110.00,110.00
+100048,Femke Bakker,2024-08-22,NL,Amsterdam,Mouse,3,85.00,255.00,255.00
+100049,Isabel Alonso,2024-09-05,ES,Seville,T-Shirt,2,32.00,64.00,64.00
+100050,Astrid Lindgren,2024-10-22,SE,Malmö,Jeans,2,85.00,170.00,170.00
+100051,Yoana Koleva,2024-11-28,BG,Burgas,Dress,1,130.00,130.00,130.00
+100052,Mihai Eminescu,2024-12-11,RO,Cluj-Napoca,Shirt,3,65.00,195.00,195.00
+100053,Ján Kollár,2025-01-16,SK,Košice,Sweater,2,95.00,190.00,190.00
+100054,Ivana Brlić-Mažuranić,2025-02-22,HR,Rijeka,Jacket,1,190.00,190.00,190.00
+100055,Nikos Kazantzakis,2025-03-05,GR,Thessaloniki,Shoes,2,210.00,420.00,420.00
+100056,Fernando Pessoa,2025-04-18,PT,Porto,Socks,3,18.00,54.00,54.00
+100057,Gustav Klimt,2024-01-25,AT,Salzburg,Table,1,420.00,420.00,420.00
+100058,Hergé,2024-03-02,BE,Antwerp,Chair,3,160.00,480.00,480.00
+100059,James Joyce,2024-03-18,IE,Cork,Bedding Set,1,260.00,260.00,260.00
+100060,Thomas Mann,2024-04-13,DE,Munich,Couch,1,950.00,950.00,950.00
+100061,Jules Verne,2024-05-28,FR,Nantes,Lamp,3,85.00,255.00,255.00
+100062,Umberto Eco,2024-06-23,IT,Bologna,Rug,1,260.00,260.00,260.00
+100063,Agatha Christie,2024-07-08,UK,Belfast,Curtains,2,190.00,380.00,380.00
+100064,Karel Čapek,2024-08-04,CZ,Brno,Pillows,3,65.00,195.00,195.00
+100065,Federico García Lorca,2024-09-15,ES,Granada,Fiction Novel,2,27.00,54.00,54.00
+100066,Selma Lagerlöf,2024-10-08,SE,Uppsala,Sci-Fi Book,3,32.00,96.00,96.00
+100067,Stanisław Lem,2024-11-12,PL,Poznań,Mystery Book,2,30.00,60.00,60.00
+100068,Erich Maria Remarque,2024-12-28,DE,Düsseldorf,Cookbook,1,38.00,38.00,38.00
+100069,Victor Hugo,2025-01-07,FR,Lille,History Book,3,47.00,141.00,141.00
+100070,Charles Dickens,2025-02-13,UK,Bristol,Textbook,2,65.00,130.00,130.00
+100071,Dante Alighieri,2025-03-22,IT,Florence,Poetry Book,1,22.00,22.00,22.00
+100072,Elin Pelin,2025-04-05,BG,Ruse,Childrens Book,3,18.00,54.00,54.00
+100073,Ivan Gundulić,2024-01-29,HR,Dubrovnik,Basketball,2,58.00,116.00,116.00
+100074,Slaven Bilić,2024-03-07,HR,Split,Football,1,70.00,70.00,70.00
+100075,Jari Litmanen,2024-03-28,FI,Jyväskylä,Soccer Ball,3,63.00,189.00,189.00
+100076,Andrés Iniesta,2024-04-22,ES,Albacete,Running Shoes,2,190.00,380.00,380.00
+100077,Wayne Rooney,2024-05-17,UK,Newcastle,Yoga Mat,1,45.00,45.00,45.00
+100078,Michael Ballack,2024-06-10,DE,Leipzig,Dumbbells,3,95.00,285.00,285.00
+100079,Roger Federer,2024-07-27,CH,Basel,Tennis Racket,2,190.00,380.00,380.00
+100080,Hristo Stoichkov,2024-08-12,BG,Stara Zagora,Jersey,1,72.00,72.00,72.00
+100081,Ruud Gullit,2024-02-01,NL,Utrecht,Laptop,2,1500.00,3000.00,3000.00
+100082,Alessandro Del Piero,2024-02-06,IT,Florence,Smartphone,1,1250.00,1250.00,1250.00
+100083,Zinedine Zidane,2024-03-29,FR,Bordeaux,Tablet,3,740.00,2220.00,2220.00
+100084,David Beckham,2024-04-24,UK,Leeds,Headphones,2,270.00,540.00,540.00
+100085,Roy Keane,2024-05-19,IR,Limerick,Smartwatch,1,490.00,490.00,490.00
+100086,Manuel Neuer,2024-06-15,DE,Dresden,Charger,4,30.00,120.00,120.00
+100087,Robert Lewandowski,2024-07-21,PL,Gdańsk,Keyboard,1,120.00,120.00,120.00
+100088,Arjen Robben,2024-08-27,NL,Eindhoven,Mouse,3,90.00,270.00,270.00
+100089,Andrés Iniesta,2024-09-08,ES,Murcia,T-Shirt,2,35.00,70.00,70.00
+100090,Zlatan Ibrahimović,2024-10-25,SE,Örebro,Jeans,2,90.00,180.00,180.00
+100091,Ivelin Popov,2024-12-01,BG,Vidin,Dress,1,140.00,140.00,140.00
+100092,Gheorghe Hagi,2024-12-14,RO,Constanța,Shirt,3,70.00,210.00,210.00
+100093,Marek Hamšík,2025-01-20,SK,Žilina,Sweater,2,100.00,200.00,200.00
+100094,Luka Modrić,2025-02-26,HR,Zadar,Jacket,1,200.00,200.00,200.00
+100095,Giannis Antetokounmpo,2025-03-08,GR,Patras,Shoes,2,220.00,440.00,440.00
+100096,Cristiano Ronaldo,2025-04-21,PT,Funchal,Socks,3,20.00,60.00,60.00
+100097,Niki Lauda,2024-02-04,AT,Graz,Table,1,450.00,450.00,450.00
+100098,Eddy Merckx,2024-03-09,BE,Ghent,Chair,3,170.00,510.00,510.00
+100099,George Best,2024-03-22,IE,Derry,Bedding Set,1,270.00,270.00,270.00
+100100,Franz Beckenbauer,2024-04-17,DE,Hamburg,Couch,1,1000.00,1000.00,1000.00
+100101,Jean-Paul Sartre,2024-06-01,FR,Paris,Lamp,3,90.00,270.00,270.00
+100102,Federico Fellini,2024-06-27,IT,Rimini,Rug,1,270.00,270.00,270.00
+100103,William Shakespeare,2024-07-12,UK,Stratford-upon-Avon,Curtains,2,200.00,400.00,400.00
+100104,Milan Kundera,2024-08-09,CZ,Ostrava,Pillows,3,70.00,210.00,210.00
+100105,Miguel de Cervantes,2024-09-19,ES,Alcalá de Henares,Fiction Novel,2,29.00,58.00,58.00
+100106,Astrid Lindgren,2024-10-12,SE,Vimmerby,Sci-Fi Book,3,34.00,102.00,102.00
+100107,Andrzej Sapkowski,2024-11-16,PL,Łódź,Mystery Book,2,32.00,64.00,64.00
+100108,Patrick Süskind,2024-12-29,DE,Starnberg,Cookbook,1,40.00,40.00,40.00
+100109,Albert Camus,2025-01-11,FR,Alger,History Book,3,49.00,147.00,147.00
+100110,George Orwell,2025-02-17,UK,Wigan,Textbook,2,70.00,140.00,140.00
+100111,Eugenio Montale,2025-03-25,IT,Genoa,Poetry Book,1,24.00,24.00,24.00
+100112,Hristo Botev,2025-04-08,BG,Karlovo,Childrens Book,3,20.00,60.00,60.00
+100113,Dražen Petrović,2024-02-02,HR,Šibenik,Basketball,2,60.00,120.00,120.00
+100114,Zlatan Ibrahimović,2024-03-10,SE,Malmö,Football,1,75.00,75.00,75.00
