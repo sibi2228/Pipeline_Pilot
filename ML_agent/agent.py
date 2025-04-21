@@ -1,5 +1,6 @@
+# c:\Users\Rahul\Desktop\Hackathon\ML_agent\agent.py
 """
-ADK Agent using ParallelAgent to run Prophet and Regression forecasts simultaneously.
+ADK Agent using LlmAgent to run Prophet and Regression forecasts sequentially.
 Results are stored in BigQuery tables/views and plots saved locally.
 """
 
@@ -13,14 +14,14 @@ import os # For creating plot directory
 import numpy as np
 import pandas as pd
 from google.adk.agents.llm_agent import LlmAgent
-from google.adk.agents.parallel_agent import ParallelAgent # Import ParallelAgent
+# REMOVED: from google.adk.agents.parallel_agent import ParallelAgent
 from google.cloud import bigquery
 from google.cloud.exceptions import NotFound
 
 project_id = "us-con-gcp-sbx-0000489-032025"
 
 # --- ML Model Imports ---
-# Assuming Prophet is installed: pip install prophet
+# (Keep ML imports as they were)
 try:
     from prophet import Prophet
 except ImportError:
@@ -32,8 +33,6 @@ except ImportError:
         def predict(self, future): return pd.DataFrame({'ds': future['ds'], 'yhat': [0]*len(future), 'yhat_lower': [0]*len(future), 'yhat_upper': [0]*len(future)})
         def add_country_holidays(self, country_name): print(f"Dummy: Adding holidays for {country_name}")
 
-
-# Assuming sklearn and xgboost are installed: pip install scikit-learn xgboost
 try:
     from sklearn.ensemble import RandomForestRegressor
     from sklearn.model_selection import train_test_split
@@ -52,22 +51,24 @@ except ImportError:
             def predict(self, X): return np.zeros(len(X))
 
 # --- Visualization Import ---
+# (Keep visualization import as it was)
 try:
     import matplotlib.pyplot as plt
-    # Set backend to Agg to avoid issues in environments without a display
     plt.switch_backend('Agg')
 except ImportError:
     print("matplotlib not found. Please install it: pip install matplotlib")
-    plt = None # Set to None if not installed
+    plt = None
 
 # --- Constants ---
-GEMINI_MODEL: str = "gemini-1.5-flash"
+# (Keep constants as they were)
+GEMINI_MODEL: str = "gemini-2.0-flash"
 DEFAULT_BQ_LOCATION: str = "US"
 ANALYTICS_DATASET_ID: str = "analytics"
 BI_DATASET_ID: str = "BI"
-PLOT_SAVE_DIR: str = "forecast_plots" # Directory to save plots
+PLOT_SAVE_DIR: str = "forecast_plots"
 
-# --- Helper Function to Ensure Dataset Exists ---
+# --- Helper Functions ---
+# (Keep helper functions: ensure_dataset_exists, create_time_features, _save_forecast_plot as they were)
 def ensure_dataset_exists(client: bigquery.Client, project_id: str, dataset_id: str, location: str):
     """Checks if a dataset exists, creates it if not."""
     dataset_ref = client.dataset(dataset_id)
@@ -84,7 +85,6 @@ def ensure_dataset_exists(client: bigquery.Client, project_id: str, dataset_id: 
         print(f"[Dataset Check] Error checking/creating dataset '{project_id}.{dataset_id}': {e}")
         raise
 
-# --- Helper Function for Time Feature Engineering ---
 def create_time_features(df, date_col='ds'):
     """Creates time-based features from a datetime column."""
     df = df.copy()
@@ -97,7 +97,6 @@ def create_time_features(df, date_col='ds'):
     df['quarter'] = df[date_col].dt.quarter
     return df
 
-# --- Helper Function for Plotting ---
 def _save_forecast_plot(
     historical_df: pd.DataFrame, # Contains 'ds' and 'y'
     forecast_df: pd.DataFrame,   # Contains 'forecast_date', 'forecasted_sales', optionally bounds
@@ -133,7 +132,8 @@ def _save_forecast_plot(
         return None
 
 
-# --- Standard Tool Function for Prophet Forecasting (with Plotting) ---
+# --- Tool Functions ---
+# (Keep tool functions: forecast_sales_to_bq_table_and_view, regression_forecast_to_bq_table_and_view as they were)
 def forecast_sales_to_bq_table_and_view(
     project_id: str,
     source_dataset_name: str,
@@ -220,8 +220,6 @@ def forecast_sales_to_bq_table_and_view(
         print(f"[Prophet Tool] ERROR during forecasting process: {traceback.format_exc()}")
         return {"status": "error", "message": f"Failed during Prophet forecasting process: {str(e)}"}
 
-
-# --- Standard Tool Function for Regression Forecasting (with Plotting) ---
 def regression_forecast_to_bq_table_and_view(
     project_id: str,
     source_dataset_name: str,
@@ -355,108 +353,52 @@ def regression_forecast_to_bq_table_and_view(
         return {"status": "error", "message": f"Failed during regression forecasting process: {str(e)}"}
 
 
-# --- Define Sub-Agents ---
+# --- Define the Sequential Forecasting Agent ---
 
-# Sub-Agent 1: Prophet Forecaster
-prophet_sub_agent = LlmAgent(
-    name="ProphetForecastingSubAgent",
+root_agent = LlmAgent(
+    name="SequentialForecastingAgent",
     model=GEMINI_MODEL,
     instruction=f"""
-    You are an AI assistant focused *only* on Prophet forecasting.
-    Your task is to generate a sales forecast using the Prophet model based on provided parameters.
+    You are an AI assistant that orchestrates sales forecasting using two methods: Prophet and Regression (RandomForest or XGBoost).
+    Your task is to run these forecasts **sequentially**: first Prophet, then Regression.
 
-    1.  **Identify Parameters:** Extract the necessary parameters from the user request or session state:
+    **Workflow:**
+
+    1.  **Identify Parameters:** Extract the necessary parameters from the user request or context for *both* forecast types:
+        - `project_id` (use '{project_id}' if not provided)
         - `source_dataset_name`
         - `source_table_name`
-        - `forecast_table_name` (Use 'prophet_forecast_data' if not provided)
-        - `forecast_view_name` (Use 'v_prophet_forecast' if not provided)
-        - Optional: `date_column`, `sales_column`, `forecast_periods`, `country_code_for_holidays`. Use defaults if not specified.
+        - `prophet_forecast_table_name` (Use 'prophet_forecast_data' if not provided)
+        - `prophet_forecast_view_name` (Use 'v_prophet_forecast' if not provided)
+        - `regression_forecast_table_name` (Use 'regression_forecast_data' if not provided)
+        - `regression_forecast_view_name` (Use 'v_regression_forecast' if not provided)
+        - `date_column` (Default: 'order_date')
+        - `sales_column` (Default: 'total_amount')
+        - `forecast_periods` (Default: 30)
+        - **Prophet Specific:** `country_code_for_holidays` (Optional, e.g., 'US')
+        - **Regression Specific:** `model_type` ('RandomForest' or 'XGBoost', Default: 'RandomForest')
+        - **Regression Specific:** `feature_columns` (Optional list of extra features from source table)
 
-    2.  **Execute Forecast:** Call the `forecast_sales_to_bq_table_and_view` tool with the identified parameters.
+    2.  **Execute Prophet Forecast:**
+        - Call the `forecast_sales_to_bq_table_and_view` tool with the identified parameters relevant to Prophet (source data, prophet output names, date/sales cols, periods, holidays).
+        - Store the result dictionary returned by the tool. Let's call it `prophet_result`.
 
-    3.  **Output:** The result of the tool call will be automatically saved. Do not add any conversational text.
+    3.  **Execute Regression Forecast:**
+        - **After** the Prophet forecast completes, call the `regression_forecast_to_bq_table_and_view` tool with the parameters relevant to Regression (source data, regression output names, date/sales cols, periods, model_type, feature_columns). **Do NOT pass `country_code_for_holidays` to this tool.**
+        - Store the result dictionary returned by the tool. Let's call it `regression_result`.
+
+    4.  **Final Report:**
+        - Once both tool calls are finished, compile a final summary report.
+        - Include the status ('success' or 'error') and the message from both `prophet_result` and `regression_result`.
+        - Mention the created table and view names for both forecasts if successful.
+        - Mention the saved plot filenames for both forecasts if available.
+        - Present this summary clearly to the user.
     """,
-    description="Generates a sales forecast using the Prophet model.",
-    tools=[forecast_sales_to_bq_table_and_view],
-    output_key="prophet_forecast_result"
+    description="Runs Prophet and Regression sales forecasts sequentially, storing results in BigQuery and saving plots.",
+    tools=[
+        forecast_sales_to_bq_table_and_view,      # Prophet tool
+        regression_forecast_to_bq_table_and_view   # Regression tool
+    ],
+    output_key="sequential_forecast_summary" # Store the final compiled report here
 )
 
-# Sub-Agent 2: Regression Forecaster
-regression_sub_agent = LlmAgent(
-    name="RegressionForecastingSubAgent",
-    model=GEMINI_MODEL,
-    instruction=f"""
-    You are an AI assistant focused *only* on Regression forecasting.
-    Your task is to generate a sales forecast using a Regression model (RandomForest or XGBoost) based on provided parameters.
-
-    1.  **Identify Parameters:** Extract the necessary parameters from the user request or session state:
-        - `source_dataset_name`
-        - `source_table_name`
-        - `forecast_table_name` (Use 'regression_forecast_data' if not provided)
-        - `forecast_view_name` (Use 'v_regression_forecast' if not provided)
-        - `model_type`: Check if 'RandomForest' or 'XGBoost' is specified. Default to 'RandomForest'.
-        - `feature_columns`: Check if a list of additional feature columns is specified. Use only time features if not.
-        - Optional: `date_column`, `sales_column`, `forecast_periods`. Use defaults if not specified.
-
-    2.  **Execute Forecast:** Call the `regression_forecast_to_bq_table_and_view` tool with the identified parameters. **Do not pass `country_code_for_holidays`.**
-
-    3.  **Output:** The result of the tool call will be automatically saved. Do not add any conversational text.
-    """,
-    description="Generates a sales forecast using a Regression model (RandomForest or XGBoost).",
-    tools=[regression_forecast_to_bq_table_and_view],
-    output_key="regression_forecast_result"
-)
-
-# --- Define the ParallelAgent ---
-root_agent = ParallelAgent(
-    name="ParallelForecastingAgent",
-    sub_agents=[prophet_sub_agent, regression_sub_agent]
-)
-
-# --- Example Runner Setup (for testing) ---
-# from google.adk.runners import Runner
-# from google.adk.sessions import InMemorySessionService
-# from google.genai import types
-#
-# APP_NAME = "parallel_forecast_app"
-# USER_ID = "forecast_user_01"
-# SESSION_ID = "parallel_forecast_session"
-#
-# # Session and Runner
-# session_service = InMemorySessionService()
-# session = session_service.create_session(app_name=APP_NAME, user_id=USER_ID, session_id=SESSION_ID)
-# runner = Runner(agent=root_agent, app_name=APP_NAME, session_service=session_service) # Use the ParallelAgent
-#
-# # Agent Interaction
-# def call_agent(query, inputs=None):
-#     ''' Helper function to call the agent with a query and optional initial inputs. '''
-#     content = types.Content(role='user', parts=[types.Part(text=query)])
-#     # Pass initial parameters via runner inputs if needed by sub-agents
-#     events = runner.run(user_id=USER_ID, session_id=SESSION_ID, new_message=content, inputs=inputs)
-#     final_response_text = "Parallel execution initiated. Results stored in session state."
-#     for event in events:
-#         if event.is_final_response() and event.content:
-#              final_response_text = event.content.parts[0].text if event.content.parts else final_response_text
-#              print("Agent Final Response: ", final_response_text) # May be minimal
-#
-#     # After the run, inspect the session state for results
-#     final_session_state = session_service.get_session_state(app_name=APP_NAME, user_id=USER_ID, session_id=SESSION_ID)
-#     print("\n--- Session State After Run ---")
-#     print("Prophet Result:", final_session_state.get("prophet_forecast_result"))
-#     print("Regression Result:", final_session_state.get("regression_forecast_result"))
-#     print("-----------------------------")
-#
-# # Example call
-# initial_params = {
-#     "project_id": "your-gcp-project-id",
-#     "source_dataset_name": "dw",
-#     "source_table_name": "transformed_orders",
-#     # Let sub-agents use default/suggested names based on instructions
-#     # "forecast_table_name": "default_forecast_table",
-#     # "forecast_view_name": "default_forecast_view",
-#     # Add other params needed by both/either sub-agent if known upfront
-#     # "country_code_for_holidays": "US", # For Prophet
-#     # "model_type": "XGBoost", # For Regression
-#     # "feature_columns": ["country", "category"] # For Regression
-# }
-# call_agent("Generate sales forecasts using both Prophet and Regression models.", inputs=initial_params)
