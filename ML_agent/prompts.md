@@ -1,0 +1,4 @@
+-user can ask the agent to genrate the sales forecast based on prophet or regression
+-User should provide the source dataset, source table id and project Id 
+-User can also optionally provide destination dataset or destination table id, otherwise it is mapped as deault to create on its own.
+-User should optionally provide forecast_periods

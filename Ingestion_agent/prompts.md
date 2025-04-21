@@ -1,0 +1,6 @@
+- User should provide the bucket name and the filename and which BQ dataset he wants to load the data into
+- if there are multiple files inside the buckets user can ask to read all the files inside the bucket "bucket_name"
+-The source data can be pushed into the raw dataset inside the bq
+- The lookup csv files can also be loaded by prompting " Load all the lookup files into "lookup_bucket_name".
+- The lookup data can be loaded into dw dataset
+- user can optionally provide the table id , otherwise it will fetch from the csv filename.

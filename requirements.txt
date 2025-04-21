@@ -1,0 +1,12 @@
+google-adk
+google-cloud-storage
+google-cloud-bigquery
+pandas
+numpy
+prophet
+scikit-learn
+xgboost
+matplotlib
+pyarrow
+# Add python-dotenv if you plan to use .env files
+# python-dotenv
